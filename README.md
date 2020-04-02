@@ -9,7 +9,7 @@
 ## The Plugin:
   Basically an aim vector pointer. Using normalized Vectors.
 
-### the math:
+### Math:
     _MVector_ z_vec = forwardData.asVector();
     z_vec *= -1;
     upVector.normalize();
@@ -21,12 +21,25 @@
     y_vec.normalize();
 
 
-### building the matrix
+#### building the matrix
     _double_ MyMatrix[4][4] = { {x_vec.x, x_vec.y, x_vec.z, 0},
                                 {y_vec.x, y_vec.y, y_vec.z, 0},
                                 {z_vec.x, z_vec.y, z_vec.z, 0},
                                 {0.0, 0.0, 0.0, 1.0}
                               };
+
+## MEL setup
+```
+loadPlugin "aimNode.mll";
+createNode "aimNode";
+createNode "locator" -n "aimAtShape";
+createNode "locator" -n "aimShape";
+connectAttr "aimAt.translate" "aimNode1.forward";
+connectAttr "aimNode1.or" "aim.r";
+setAttr aimAt.translate -type "double3" 1.0 0.0 0.0;
+
+```
+
 
 ## Demo:
 ![Node Demo](./aimNode.gif)

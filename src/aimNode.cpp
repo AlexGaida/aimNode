@@ -1,8 +1,7 @@
 /*
 
 @info:
-     aimNode rotation calculation. 
-	 Basically works.
+     aimNode rotation calculation. Basically works.
 
 */
 #include "aimNode.h"
