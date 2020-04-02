@@ -2,12 +2,14 @@
 /*
 
 @info:
-stretchyIk: This is an aim node plugin.
+aimNode: This is an aim rotation node plugin.
 @author: Alexei Gaidachev
 @date: February 15, 2017
 @versions:
 1.0.0 - February 15, 2017:
-initial commit.
+    initial commit.
+1.1.0 - April 01, 2020:
+    updated the code from Autodesks' reference site.
 
 */
 
@@ -30,19 +32,26 @@ public:
 
 public:
 	static MTypeId typeId;
-	// define translates values
-	static MObject inputTranslateX;
-	static MObject inputTranslateY;
-	static MObject inputTranslateZ;
-	static MObject inputTranslate;
+	// define translate values
+	static MObject translateX;
+	static MObject translateY;
+	static MObject translateZ;
+	static MObject translate;
+	// define forward values
+	static MObject forwardX;
+	static MObject forwardY;
+	static MObject forwardZ;
+	static MObject forward;
 	// define rotates values
 	static MObject outputRotateX;
 	static MObject outputRotateY;
 	static MObject outputRotateZ;
 	static MObject outputRotate;
-	// define matrixes
-	static MObject driverMatrix;
-	static MObject upVectorMatrix;
+	// define aim node up vector
+	static  MObject     up;
+    static  MObject     upX;
+    static  MObject     upY;
+    static  MObject     upZ;
 };
 
 #endif

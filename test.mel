@@ -1,0 +1,7 @@
+loadPlugin "D:/Work/Pipeline/Maya/Plugins/aimNode/build/install/plug-ins/aimNode.mll";
+createNode "aimNode";
+createNode "locator" -n "aimAtShape";
+createNode "locator" -n "aimShape";
+connectAttr "aimAt.translate" "aimNode1.forward";
+connectAttr "aimNode1.or" "aim.r";
+setAttr aimAt.translate -type "double3" 1.0 0.0 0.0;

@@ -7,27 +7,30 @@
   To save the configuration and build settings of CMake files.
 
 ## The Plugin:
-  Basically an aim constraint. Using normalized Vectors.
+  Basically an aim vector pointer. Using normalized Vectors.
 
 ### the math:
-  _MVector_ aimVecV = driverMatrix - inputTranslate;
+    _MVector_ z_vec = forwardData.asVector();
+    z_vec *= -1;
+    upVector.normalize();
+    z_vec.normalize();
 
-  _MVector_ upVecV  = upVector - inputTranslate;
+    _MVector_ x_vec = z_vec ^ upVector;
+    x_vec.normalize();
+    _MVector_ y_vec = x_vec ^ z_vec;
+    y_vec.normalize();
 
-  upVecV.normalize();
-  
-  aimVecV.normalize();
-
-  _MVector_ cross = aimVecV ^ upVecV;
-
-  _MVector_ upVec = cross ^ aimVecV;
 
 ### building the matrix
-  _double_ matrix[4][4] = {
+    _double_ MyMatrix[4][4] = { {x_vec.x, x_vec.y, x_vec.z, 0},
+                                {y_vec.x, y_vec.y, y_vec.z, 0},
+                                {z_vec.x, z_vec.y, z_vec.z, 0},
+                                {0.0, 0.0, 0.0, 1.0}
+                              };
 
-    {aimVecV.x, aimVecV.y, aimVecV.z, 0},
-    {upVecV.x, upVecV.y, upVecV.z, 0},
-    {cross.x, cross.y, cross.z, 0},
-    {inputTranslate[0], inputTranslate[1], inputTranslate[2], 1},
+## Demo:
+![Node Demo](./aimNode.gif)
 
-  }
+## Resources used
+Autodesk Maya C++ Reference Documentation:
+http://help.autodesk.com/view/MAYAUL/2019/ENU/?guid=Maya_SDK_MERGED_cpp_ref_build_rotation_node_2build_rotation_node_8cpp_example_html
